@@ -1,0 +1,20 @@
+services:
+  fotolab:
+    build: .
+    image: fotolab:latest
+    container_name: fotolab
+    ports:
+      # portul de pe gazdă se poate schimba: FOTOLAB_PORT=8080 docker compose up -d
+      - "${FOTOLAB_PORT:-3000}:3000"
+    restart: unless-stopped
+    init: true
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1:3000/"]
+      interval: 30s
+      timeout: 5s
+      start_period: 10s
+      retries: 3

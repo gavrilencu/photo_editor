@@ -1,0 +1,15 @@
+node_modules
+.next
+out
+build
+coverage
+.git
+.vscode
+*.tsbuildinfo
+next-env.d.ts
+npm-debug.log*
+.env*
+Dockerfile
+docker-compose.yml
+.dockerignore
+*.md
